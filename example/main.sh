@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sort | uniq -c | sort -n -r | awk '{print $2}'
+sort | uniq -c | sort -n -r | awk '{print $2; exit}'
