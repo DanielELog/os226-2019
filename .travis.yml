@@ -4,6 +4,7 @@ sudo: true
 env:
   matrix:
     - TASK=example
+    - TASK=syscall
 
 script :
   - ( cd $TASK; ./test/run.sh )

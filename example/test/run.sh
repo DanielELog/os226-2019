@@ -2,6 +2,7 @@
 
 . ../test/lib.sh
 
-#make
+make
 
-cmpout test/1 # FIXME add executable here
+testouts test ./main || exit 1
+testouts test ./main.sh || exit 1
