@@ -47,7 +47,7 @@ void init(void *base) {
 	baseOffset = base;
 	
 	struct sigaction act;
-	act.sa_action = sigHandler;
+	act.sa_sigaction = sigHandler;
 	act.sa_flags = SA_RESTART;
 	
 	sigemptyset(&act.sa_mask);
