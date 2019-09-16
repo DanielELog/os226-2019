@@ -25,19 +25,19 @@ void sigHandler(int sig, siginfo_t *siginfo, void *ctx) {
 	if (cmd == 0x538b) {
 		index = ((*(uint32_t *) uc->uc_mcontext.gregs[REG_RIP]) & 0xff0000) >> 18;
 	}
-	else if (cmd == 0x4b8b || cmd == 0x558b) {
+	else if (cmd == 0x4d8b || cmd == 0x558b) {
 		index = ((*(uint32_t *) uc->uc_mcontext.gregs[REG_RIP]) & 0xff0000) >> 18;
 		index += (((int)uc->uc_mcontext.gregs[REG_RBP]) - baseOffset) >> 2;
 	}
 
-	if (cmd == 0x4b8b || cmd == 0x538b || cmd == 0x558b) {
+	if (cmd == 0x4d8b || cmd == 0x538b || cmd == 0x558b) {
 		regRipOffset = 3;
 	}
 	
 	if (cmd == 0x138b || cmd == 0x538b || cmd == 0x558b) {
 		uc->uc_mcontext.gregs[REG_RDX] = callCounter + 1000 * index;
 	}
-	else if (cmd == 0x4b8b || cmd == 0x0b8b) {
+	else if (cmd == 0x4d8b || cmd == 0x0b8b) {
 		uc->uc_mcontext.gregs[REG_RCX] = callCounter + 1000 * index;
 	}
 	uc->uc_mcontext.gregs[REG_RIP] += regRipOffset;
