@@ -18,9 +18,6 @@ void sigHandler(int sig, siginfo_t *siginfo, void *ctx) {
 	uint16_t cmd = *(uint16_t *) uc->uc_mcontext.gregs[REG_RIP];
 	int index = 0;
 	int regRipOffset = 2;
-	
-	if (cmd & 0xff != 0x8b)
-		return;
 
 	if (cmd == 0x538b) {
 		index = ((*(uint32_t *) uc->uc_mcontext.gregs[REG_RIP]) & 0xff0000) >> 18;
